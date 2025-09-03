@@ -1,21 +1,22 @@
-import { Button } from "@react-navigation/elements";
-import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import SearchBar from "@/components/SearchBar";
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+import { Image, ScrollView, View } from "react-native";
 
 export default function Index() {
   return (
-    <View
-      className="bg-light-100"
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text className="text-4xl font-bold text-accent">Movie App</Text>
-      <Link href="/search" asChild>
-        <Button>Search</Button>
-      </Link>
+    <View className="flex-1 bg-primary">
+      <Image source={images.bg} className="absolute z-0 w-full" />
+      <ScrollView
+        className="flex-1 px-5"
+        contentContainerStyle={{
+          minHeight: "100%",
+          paddingBottom: 10,
+        }}
+      >
+        <Image source={icons.logo} className="w-12 h-10 mx-auto mt-20 mb-5" />
+        <SearchBar placeholder="Search for a movie" onChangeText={() => {}} />
+      </ScrollView>
     </View>
   );
 }
