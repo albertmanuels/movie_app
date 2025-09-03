@@ -1,3 +1,5 @@
+import { Button } from "@react-navigation/elements";
+import { Link } from "expo-router";
 import { Text, View } from "react-native";
 
 export default function Index() {
@@ -11,6 +13,9 @@ export default function Index() {
       }}
     >
       <Text className="text-4xl font-bold text-accent">Movie App</Text>
+      <Link href="/search" asChild>
+        <Button>Search</Button>
+      </Link>
     </View>
   );
 }
