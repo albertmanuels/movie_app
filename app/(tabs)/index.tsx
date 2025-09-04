@@ -1,9 +1,32 @@
+import MovieCard from "@/components/MovieCard";
 import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
-import { Image, ScrollView, View } from "react-native";
+import useFetch from "@/hooks/useFetch";
+import { fetchMovies } from "@/services/api";
+import { useState } from "react";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 
 export default function Index() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const {
+    data: movies,
+    loading: isMoviesLoading,
+    error: moviesError,
+  } = useFetch(() =>
+    fetchMovies({
+      query: "",
+    })
+  );
+
   return (
     <View className="flex-1 bg-primary">
       <Image source={images.bg} className="absolute z-0 w-full" />
@@ -15,7 +38,44 @@ export default function Index() {
         }}
       >
         <Image source={icons.logo} className="w-12 h-10 mx-auto mt-20 mb-5" />
-        <SearchBar placeholder="Search for a movie" onChangeText={() => {}} />
+        {isMoviesLoading ? (
+          <ActivityIndicator
+            size="large"
+            color="#000ff"
+            className="self-center mt-10"
+          />
+        ) : moviesError ? (
+          <Text>{moviesError?.message}</Text>
+        ) : (
+          <View className="flex-1 mt-5">
+            <SearchBar
+              placeholder="Search for a movie"
+              onChangeText={(e) => setSearchTerm(e)}
+              value={searchTerm}
+            />
+
+            <>
+              <Text className="mt-5 mb-3 text-lg font-bold text-white">
+                Latest Movies
+              </Text>
+
+              <FlatList
+                data={movies}
+                renderItem={({ item }) => <MovieCard {...item} />}
+                keyExtractor={(item) => item.id.toString()}
+                numColumns={3}
+                columnWrapperStyle={{
+                  justifyContent: "flex-start",
+                  gap: 20,
+                  paddingRight: 5,
+                  marginBottom: 20,
+                }}
+                className="pb-32 mt-2"
+                scrollEnabled={false}
+              />
+            </>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
