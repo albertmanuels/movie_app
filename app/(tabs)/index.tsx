@@ -65,9 +65,8 @@ export default function Index() {
                 keyExtractor={(item) => item.id.toString()}
                 numColumns={3}
                 columnWrapperStyle={{
-                  justifyContent: "flex-start",
-                  gap: 20,
-                  paddingRight: 5,
+                  justifyContent: "space-between",
+                  gap: 16,
                   marginBottom: 20,
                 }}
                 className="pb-32 mt-2"
