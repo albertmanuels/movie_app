@@ -99,6 +99,7 @@ const SearchScreen = () => {
             </View>
           ) : null
         }
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

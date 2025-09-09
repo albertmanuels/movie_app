@@ -1,33 +1,16 @@
-import { Tabs } from "expo-router";
+import { icons } from "@/constants/icons";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 
 const SavedScreen = () => {
   return (
-    <View>
-      <Text>SavedScreen</Text>
-      <Tabs>
-        <Tabs.Screen
-          name="index"
-          options={{ title: "Home", headerShown: false }}
-        />
-        <Tabs.Screen
-          name="search"
-          options={{ title: "Search", headerShown: false }}
-        />
-        <Tabs.Screen
-          name="saved"
-          options={{ title: "Saved", headerShown: false }}
-        />
-        <Tabs.Screen
-          name="profile"
-          options={{ title: "Profile SAVEDD", headerShown: false }}
-        />
-      </Tabs>
+    <View className="flex-1 px-10 bg-primary">
+      <View className="flex flex-col items-center justify-center flex-1 gap-5">
+        <Image source={icons.save} className="size-10" tintColor="#fff" />
+        <Text className="text-lg font-bold text-white">Saved</Text>
+      </View>
     </View>
   );
 };
 
 export default SavedScreen;
-
-const styles = StyleSheet.create({});

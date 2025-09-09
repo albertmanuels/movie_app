@@ -32,6 +32,7 @@ export default function Index() {
       <Image source={images.bg} className="absolute z-0 w-full" />
       <ScrollView
         className="flex-1 px-5"
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           minHeight: "100%",
           paddingBottom: 10,
@@ -71,6 +72,7 @@ export default function Index() {
                 }}
                 className="pb-32 mt-2"
                 scrollEnabled={false}
+                showsVerticalScrollIndicator={false}
               />
             </>
           </View>
